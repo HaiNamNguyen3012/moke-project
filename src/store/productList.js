@@ -34,6 +34,5 @@ export const product = [
         saleOff: 0,
         price: '120$',
         available: true,
-    },
-    
+    },  
 ]
