@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "image": "http://localhost:5173/src/assets/img/shoes.jpg",
+        "name": "abc",
+        "rate": 5,
+        "saleOff": 0,
+        "price": "120",
+        "available": true
+    },
+    {
+        "id": 2,
+        "image": "http://localhost:5173/src/assets/img/shoes.jpg",
+        "name": "abc",
+        "rate": 5,
+        "saleOff": 0,
+        "price": "120",
+        "available": true
+    },
+    {
+        "id": 3,
+        "image": "http://localhost:5173/src/assets/img/shoes.jpg",
+        "name": "abc",
+        "rate": 5,
+        "saleOff": 0,
+        "price": "120",
+        "available": true
+    },
+    {
+        "id": 4,
+        "image": "http://localhost:5173/src/assets/img/shoes.jpg",
+        "name": "abc",
+        "rate": 5,
+        "saleOff": 0,
+        "price": "120",
+        "available": true
+    }
+]

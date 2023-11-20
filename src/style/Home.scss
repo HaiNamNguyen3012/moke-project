@@ -43,6 +43,32 @@
           }
         }
       }
+      .product-list {
+        width: 100%;
+        display: flex;
+        // padding: 0 10px;
+        .product {
+          max-width: 25%;
+          margin: 0 10px;
+          background: #fff;
+          padding: 0 10px;
+          .content {
+            line-height: 1.5;
+            h1 {
+              font-size: 32px;
+            }
+            img {
+              max-width: 100%;
+            }
+            #id {
+              font-size: 16px;
+            }
+            #price {
+              font-size: 24px;
+            }
+          }
+        }
+      }
     }
   }
 }

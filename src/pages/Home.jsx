@@ -2,13 +2,14 @@ import Layout from "antd/es/layout/layout";
 
 import "../style/Home.scss";
 import { Header } from "../component/Header/Header";
-import { Col, Image, Menu, Row } from "antd";
-import React from "react";
+import { Col, Flex, Image, Menu, Rate, Row } from "antd";
+import React, { useEffect, useState } from "react";
 import {
   AlignLeftOutlined,
   RightOutlined,
   TagOutlined,
 } from "@ant-design/icons";
+import axios from "axios";
 
 const items = [
   "Computer",
@@ -31,6 +32,21 @@ const items = [
 });
 
 export const Home = () => {
+  const [products, setProducts] = useState([]);
+  const getAllProducts = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5173/src/assets/mock/productList.json"
+      );
+      const responseData = await response.data;
+      setProducts(responseData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    setProducts(getAllProducts());
+  }, []);
   return (
     <Layout className="layout">
       <Header />
@@ -106,9 +122,23 @@ export const Home = () => {
               <Col span={20} className="right">
                 <p>FREE SHIPPING</p>
                 <p>For orders from 50%</p>
+                {/* <button onClick={getProduct}>Click</button> */}
               </Col>
             </Row>
           </Col>
+          <div className="product-list">
+            {products.map((product) => (
+              <div className="product">
+                <div className="content">
+                  <img src={product.image}></img>
+                  <h1>{product.name}</h1>
+                  <p id="id">ID: {product.id}</p>
+                  <Rate value={product.rate} />
+                  <p id="price">${product.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </Row>
       </div>
     </Layout>
