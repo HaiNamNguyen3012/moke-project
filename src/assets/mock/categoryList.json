@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Computer"
+    },
+    {
+        "id": 2,
+        "name": "Hand Tools"
+    },
+    {
+        "id": 3,
+        "name": "Machine Tools"
+    },
+    {
+        "id": 4,
+        "name": "Power Tools"
+    },
+    {
+        "id": 5,
+        "name": "Storage Tools"
+    },
+    {
+        "id": 6,
+        "name": "Clothes & PPE"
+    },
+    {
+        "id": 7,
+        "name": "Eletrical"
+    },
+    {
+        "id": 8,
+        "name": "Building Tools"
+    },
+    {
+        "id": 9,
+        "name": "Foods"
+    },
+    {
+        "id": 10,
+        "name": "Drinks"
+    }
+]

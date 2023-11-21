@@ -12,7 +12,7 @@ const selectBefore = (
     Categories
   </div>
 );
-export const Header = () => {
+export const Header = (setModalLoginOpen) => {
   return (
     <>
       <header className="header">
@@ -59,7 +59,10 @@ export const Header = () => {
             </Col>
             <Col span={3} className="button-group">
               <Button icon={<ShoppingCartOutlined className="button" />} />
-              <Button icon={<UserOutlined className="button" />} />
+              <Button
+                icon={<UserOutlined className="button" />}
+                onClick={() => setModalLoginOpen (true)}
+              />
             </Col>
           </Row>
         </nav>

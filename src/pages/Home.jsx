@@ -10,43 +10,28 @@ import {
   TagOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
-
-const items = [
-  "Computer",
-  "Hand Tools",
-  "Machine Tools",
-  "Power Tools",
-  "Storage Tools",
-  "Clothes",
-  "Electrical",
-  "Building Tools",
-  "Food",
-  "Drinks",
-].map((name, index) => {
-  const key = String(index + 1);
-  return {
-    key: `sub ${key}`,
-    label: name,
-    icon: React.createElement(RightOutlined),
-  };
-});
+import { LoginModal } from "../component/Login/LoginModal";
+import { getAllCategoriesList, getAllProducts } from "../service/HomeService";
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
-  const getAllProducts = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5173/src/assets/mock/productList.json"
-      );
-      const responseData = await response.data;
-      setProducts(responseData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const [categories, setCategories] = useState([]);
+  const [modalLoginOpen, setModalLoginOpen] = useState(false);
+  const [modalRegisterOpen, setModalRegisterOpen] = useState(false);
+
   useEffect(() => {
-    setProducts(getAllProducts());
+    getAllProducts(setProducts);
+    getAllCategoriesList(setCategories);
   }, []);
+  const categoryList = categories.map((category) => {
+    // const key = String(index + 1);
+    return {
+      key: `sub ${category.id+1}`,
+      label: category.name,
+      icon: React.createElement(RightOutlined),
+    };
+  });
+  console.log(categoryList);
   return (
     <Layout className="layout">
       <Header />
@@ -61,7 +46,7 @@ export const Home = () => {
               mode="inline"
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
-              items={items}
+              items={categoryList}
               className="categories-menu"
             />
           </Col>
@@ -122,7 +107,6 @@ export const Home = () => {
               <Col span={20} className="right">
                 <p>FREE SHIPPING</p>
                 <p>For orders from 50%</p>
-                {/* <button onClick={getProduct}>Click</button> */}
               </Col>
             </Row>
           </Col>
@@ -141,6 +125,7 @@ export const Home = () => {
           </div>
         </Row>
       </div>
+      {/* <LoginModal modalLoginOpen={modalLoginOpen} /> */}
     </Layout>
   );
 };
