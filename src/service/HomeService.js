@@ -1,13 +1,15 @@
 import axios from "axios";
 import { getAllCategoriesApi, getAllProductsApi } from "../config/API";
 //get product
-export const getAllProducts = async (setProducts) => {
+export const getAllProducts = async (setProducts, setIsLoading) => {
   try {
     const response = await axios.get(getAllProductsApi);
     const responseData = response.data;
     setProducts(responseData);
+    setIsLoading(false);
   } catch (error) {
     console.error(error);
+    setIsLoading(false);
   }
 };
 //get categories list

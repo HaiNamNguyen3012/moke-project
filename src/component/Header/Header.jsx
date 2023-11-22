@@ -6,13 +6,17 @@ import {
 } from "@ant-design/icons";
 import SearchIcon from "@mui/icons-material/Search";
 import "../../style/Header.scss";
+import { LoginModal } from "../Login/LoginModal";
+import { useState } from "react";
 const selectBefore = (
   <div>
     <AlignLeftOutlined />
     Categories
   </div>
 );
-export const Header = (setModalLoginOpen) => {
+export const Header = () => {
+  const [modalLoginOpen, setModalLoginOpen] = useState(false);
+  console.log('modal Login Open: ' + modalLoginOpen);
   return (
     <>
       <header className="header">
@@ -61,11 +65,12 @@ export const Header = (setModalLoginOpen) => {
               <Button icon={<ShoppingCartOutlined className="button" />} />
               <Button
                 icon={<UserOutlined className="button" />}
-                onClick={() => setModalLoginOpen (true)}
+                onClick={() => setModalLoginOpen(true)}
               />
             </Col>
           </Row>
         </nav>
+        <LoginModal modalLoginOpen={modalLoginOpen} />
       </header>
     </>
   );

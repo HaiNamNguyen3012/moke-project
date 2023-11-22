@@ -9,29 +9,28 @@ import {
   RightOutlined,
   TagOutlined,
 } from "@ant-design/icons";
-import axios from "axios";
-import { LoginModal } from "../component/Login/LoginModal";
 import { getAllCategoriesList, getAllProducts } from "../service/HomeService";
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [modalLoginOpen, setModalLoginOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
   const [modalRegisterOpen, setModalRegisterOpen] = useState(false);
 
   useEffect(() => {
-    getAllProducts(setProducts);
+    setIsLoading(true);
+    getAllProducts(setProducts, setIsLoading);
     getAllCategoriesList(setCategories);
   }, []);
+
   const categoryList = categories.map((category) => {
-    // const key = String(index + 1);
     return {
-      key: `sub ${category.id+1}`,
+      key: `sub ${category.id}`,
       label: category.name,
       icon: React.createElement(RightOutlined),
     };
   });
-  console.log(categoryList);
   return (
     <Layout className="layout">
       <Header />
@@ -111,21 +110,24 @@ export const Home = () => {
             </Row>
           </Col>
           <div className="product-list">
-            {products.map((product) => (
-              <div className="product">
-                <div className="content">
-                  <img src={product.image}></img>
-                  <h1>{product.name}</h1>
-                  <p id="id">ID: {product.id}</p>
-                  <Rate value={product.rate} />
-                  <p id="price">${product.price}</p>
+            {isLoading && <div>Loading...</div>}
+            {!isLoading && products.length === 0 && <p>No products found.</p>}
+            {!isLoading &&
+              products.length > 0 &&
+              products.map((product) => (
+                <div className="product">
+                  <div className="content">
+                    <img src={product.image}></img>
+                    <h1>{product.name}</h1>
+                    <p id="id">ID: {product.id}</p>
+                    <Rate value={product.rate} />
+                    <p id="price">${product.price}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </Row>
       </div>
-      {/* <LoginModal modalLoginOpen={modalLoginOpen} /> */}
     </Layout>
   );
 };
